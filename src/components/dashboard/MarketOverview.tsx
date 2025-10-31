@@ -172,7 +172,6 @@ export const MarketOverview = () => {
             </ResponsiveContainer>
           </CardContent>
         </Card>
-      </div>
 
         {stats.map((stat) => (
           <Card key={stat.title} className="border-border bg-card">
@@ -207,6 +206,7 @@ export const MarketOverview = () => {
             </CardContent>
           </Card>
         ))}
+      </div>
 
       <Card className="border-border bg-card">
         <CardHeader>
