@@ -27,13 +27,23 @@ const computeMileData = [
 
 // Mini chart data for stats
 const hoursData = [
-  { value: 8200 }, { value: 11800 }, { value: 9100 }, { value: 14900 }, 
-  { value: 12300 }, { value: 8600 }, { value: 12458 }
+  { time: "00:00", value: 8200 }, 
+  { time: "04:00", value: 11800 }, 
+  { time: "08:00", value: 9100 }, 
+  { time: "12:00", value: 14900 }, 
+  { time: "16:00", value: 12300 }, 
+  { time: "20:00", value: 8600 }, 
+  { time: "Now", value: 12458 }
 ];
 
 const suppliersData = [
-  { value: 138 }, { value: 141 }, { value: 139 }, { value: 143 }, 
-  { value: 145 }, { value: 146 }, { value: 147 }
+  { time: "00:00", value: 138 }, 
+  { time: "04:00", value: 141 }, 
+  { time: "08:00", value: 139 }, 
+  { time: "12:00", value: 143 }, 
+  { time: "16:00", value: 145 }, 
+  { time: "20:00", value: 146 }, 
+  { time: "Now", value: 147 }
 ];
 
 const stats = [
@@ -203,7 +213,6 @@ export const MarketOverview = () => {
                     stroke="hsl(var(--muted-foreground))" 
                     fontSize={12}
                     tickLine={false}
-                    hide
                   />
                   <YAxis 
                     stroke="hsl(var(--muted-foreground))" 
@@ -222,7 +231,7 @@ export const MarketOverview = () => {
                     dataKey="value" 
                     stroke="hsl(var(--primary))" 
                     strokeWidth={2}
-                    fill={`url(#gradient-${stat.title})`}
+                    fill="url(#spotGradient)" 
                   />
                 </AreaChart>
               </ResponsiveContainer>
