@@ -12,35 +12,33 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("market");
   const [buyerDialogOpen, setBuyerDialogOpen] = useState(false);
   return <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-card px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-              <Anchor className="h-6 w-6 text-primary" />
+      <header className="border-b border-border bg-card px-3 sm:px-6 py-3 sm:py-4">
+        <div className="flex items-center justify-between gap-2 flex-wrap sm:flex-nowrap">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-primary/10">
+              <Anchor className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
             </div>
-            <div>
-              <h1 className="text-xl font-bold text-foreground">Harborx.ai</h1>
-              
-            </div>
+            <h1 className="text-base sm:text-xl font-bold text-foreground">Harborx.ai</h1>
           </div>
-          <div className="flex items-center gap-2">
-            <Button size="sm" className="gap-2">
-              <ShoppingBag className="h-4 w-4" />
-              Buy Now at Spot
+          <div className="flex items-center gap-1 sm:gap-2 flex-wrap sm:flex-nowrap">
+            <Button size="sm" className="gap-1 sm:gap-2 hidden sm:flex text-xs sm:text-sm">
+              <ShoppingBag className="h-3 w-3 sm:h-4 sm:w-4" />
+              <span className="hidden md:inline">Buy Now at Spot</span>
             </Button>
-            <Button variant="outline" size="sm">
-              <TrendingUp className="mr-2 h-4 w-4" />
-              Market Status: Beta
-            </Button>
-            <Button variant="outline" size="sm" onClick={() => navigate("/auth")}>
-              <UserPlus className="mr-2 h-4 w-4" />
+            <div className="flex items-center gap-1 px-2 py-1 text-xs sm:text-sm text-muted-foreground">
+              <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4" />
+              <span className="hidden sm:inline">Market Status: Beta</span>
+              <span className="sm:hidden">Beta</span>
+            </div>
+            <Button variant="outline" size="sm" onClick={() => navigate("/auth")} className="hidden md:flex text-xs sm:text-sm">
+              <UserPlus className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
               Supplier Sign In
             </Button>
             <Dialog open={buyerDialogOpen} onOpenChange={setBuyerDialogOpen}>
               <DialogTrigger asChild>
-                <Button size="sm">
-                  <ShoppingCart className="mr-2 h-4 w-4" />
-                  Buyer
+                <Button size="sm" className="text-xs sm:text-sm">
+                  <ShoppingCart className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">Buyer</span>
                 </Button>
               </DialogTrigger>
               <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
