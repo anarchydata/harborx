@@ -17,10 +17,22 @@ import { Server } from "lucide-react";
 export const SupplierOnboarding = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
+    // Company Information
     companyName: "",
+    legalBusinessName: "",
+    businessRegistrationNumber: "",
+    taxId: "",
+    
+    // Contact Information
     contactEmail: "",
-    gpuType: "",
-    totalHours: "",
+    contactPhone: "",
+    businessAddress: "",
+    
+    // Legal/Compliance
+    authorizedSignatory: "",
+    signatoryTitle: "",
+    
+    // Data Center Information
     location: "",
     description: "",
   });
@@ -44,116 +56,196 @@ export const SupplierOnboarding = () => {
 
       <Card className="border-border bg-card">
         <CardHeader>
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-              <Server className="h-5 w-5 text-primary" />
-            </div>
-            <div>
-              <CardTitle className="text-foreground">Supplier Information</CardTitle>
-              <CardDescription>
-                Provide details about your GPU infrastructure
-              </CardDescription>
-            </div>
-          </div>
+          <CardTitle>Supplier Registration</CardTitle>
+          <CardDescription>
+            Complete your supplier registration to list GPU resources
+          </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid gap-6 md:grid-cols-2">
-              <div className="space-y-2">
-                <Label htmlFor="companyName">Company Name</Label>
-                <Input
-                  id="companyName"
-                  placeholder="Your Company Inc"
-                  value={formData.companyName}
-                  onChange={(e) =>
-                    setFormData({ ...formData, companyName: e.target.value })
-                  }
-                  required
-                />
-              </div>
+          <form onSubmit={handleSubmit} className="space-y-8">
+            {/* Company Information Section */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Company Information</h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="companyName">Company Name *</Label>
+                  <Input
+                    id="companyName"
+                    placeholder="Acme Computing Inc."
+                    value={formData.companyName}
+                    onChange={(e) =>
+                      setFormData({ ...formData, companyName: e.target.value })
+                    }
+                    required
+                  />
+                </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="contactEmail">Contact Email</Label>
-                <Input
-                  id="contactEmail"
-                  type="email"
-                  placeholder="contact@company.com"
-                  value={formData.contactEmail}
-                  onChange={(e) =>
-                    setFormData({ ...formData, contactEmail: e.target.value })
-                  }
-                  required
-                />
-              </div>
+                <div className="space-y-2">
+                  <Label htmlFor="legalBusinessName">Legal Business Name *</Label>
+                  <Input
+                    id="legalBusinessName"
+                    placeholder="Acme Computing Incorporated"
+                    value={formData.legalBusinessName}
+                    onChange={(e) =>
+                      setFormData({ ...formData, legalBusinessName: e.target.value })
+                    }
+                    required
+                  />
+                </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="gpuType">GPU Type</Label>
-                <Select
-                  value={formData.gpuType}
-                  onValueChange={(value) => setFormData({ ...formData, gpuType: value })}
-                >
-                  <SelectTrigger id="gpuType">
-                    <SelectValue placeholder="Select GPU type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="a100">NVIDIA A100</SelectItem>
-                    <SelectItem value="h100">NVIDIA H100</SelectItem>
-                    <SelectItem value="mi250">AMD MI250</SelectItem>
-                    <SelectItem value="v100">NVIDIA V100</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+                <div className="space-y-2">
+                  <Label htmlFor="businessRegistrationNumber">Business Registration Number *</Label>
+                  <Input
+                    id="businessRegistrationNumber"
+                    placeholder="123456789"
+                    value={formData.businessRegistrationNumber}
+                    onChange={(e) =>
+                      setFormData({ ...formData, businessRegistrationNumber: e.target.value })
+                    }
+                    required
+                  />
+                </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="totalHours">Total Hours Available</Label>
-                <Input
-                  id="totalHours"
-                  type="number"
-                  placeholder="1000"
-                  value={formData.totalHours}
-                  onChange={(e) =>
-                    setFormData({ ...formData, totalHours: e.target.value })
-                  }
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="location">Data Center Location</Label>
-                <Select
-                  value={formData.location}
-                  onValueChange={(value) => setFormData({ ...formData, location: value })}
-                >
-                  <SelectTrigger id="location">
-                    <SelectValue placeholder="Select location" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="us-east">US-East</SelectItem>
-                    <SelectItem value="us-west">US-West</SelectItem>
-                    <SelectItem value="us-central">US-Central</SelectItem>
-                    <SelectItem value="eu-west">EU-West</SelectItem>
-                    <SelectItem value="asia-pacific">Asia-Pacific</SelectItem>
-                  </SelectContent>
-                </Select>
+                <div className="space-y-2">
+                  <Label htmlFor="taxId">Tax ID / EIN *</Label>
+                  <Input
+                    id="taxId"
+                    placeholder="12-3456789"
+                    value={formData.taxId}
+                    onChange={(e) =>
+                      setFormData({ ...formData, taxId: e.target.value })
+                    }
+                    required
+                  />
+                </div>
               </div>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="description">Infrastructure Description</Label>
-              <Textarea
-                id="description"
-                placeholder="Describe your GPU infrastructure, uptime guarantees, and any additional services..."
-                value={formData.description}
-                onChange={(e) =>
-                  setFormData({ ...formData, description: e.target.value })
-                }
-                rows={4}
-              />
+            {/* Contact Information Section */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Contact Information</h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="contactEmail">Contact Email *</Label>
+                  <Input
+                    id="contactEmail"
+                    type="email"
+                    placeholder="contact@acme.com"
+                    value={formData.contactEmail}
+                    onChange={(e) =>
+                      setFormData({ ...formData, contactEmail: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="contactPhone">Contact Phone *</Label>
+                  <Input
+                    id="contactPhone"
+                    type="tel"
+                    placeholder="+1 (555) 123-4567"
+                    value={formData.contactPhone}
+                    onChange={(e) =>
+                      setFormData({ ...formData, contactPhone: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2 md:col-span-2">
+                  <Label htmlFor="businessAddress">Business Address *</Label>
+                  <Input
+                    id="businessAddress"
+                    placeholder="123 Main St, City, State, ZIP"
+                    value={formData.businessAddress}
+                    onChange={(e) =>
+                      setFormData({ ...formData, businessAddress: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+              </div>
             </div>
 
-            <div className="flex gap-3">
+            {/* Legal/Compliance Section */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Authorized Signatory</h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="authorizedSignatory">Full Name *</Label>
+                  <Input
+                    id="authorizedSignatory"
+                    placeholder="John Doe"
+                    value={formData.authorizedSignatory}
+                    onChange={(e) =>
+                      setFormData({ ...formData, authorizedSignatory: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="signatoryTitle">Title *</Label>
+                  <Input
+                    id="signatoryTitle"
+                    placeholder="CEO / CTO"
+                    value={formData.signatoryTitle}
+                    onChange={(e) =>
+                      setFormData({ ...formData, signatoryTitle: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Data Center Information */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Data Center Information</h3>
+              
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="location">Primary Data Center Location *</Label>
+                  <Select
+                    value={formData.location}
+                    onValueChange={(value) =>
+                      setFormData({ ...formData, location: value })
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select location" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="us-east">US East</SelectItem>
+                      <SelectItem value="us-west">US West</SelectItem>
+                      <SelectItem value="eu-central">EU Central</SelectItem>
+                      <SelectItem value="asia-pacific">Asia Pacific</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="description">Infrastructure Description</Label>
+                  <Textarea
+                    id="description"
+                    placeholder="Describe your GPU infrastructure, cooling systems, uptime guarantees, etc."
+                    value={formData.description}
+                    onChange={(e) =>
+                      setFormData({ ...formData, description: e.target.value })
+                    }
+                    rows={4}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
               <Button type="submit" className="bg-primary hover:bg-primary/90">
-                Submit Application
+                Complete Registration
               </Button>
             </div>
           </form>
