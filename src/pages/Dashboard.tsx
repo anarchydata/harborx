@@ -1,16 +1,16 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { MarketOverview } from "@/components/dashboard/MarketOverview";
 import { OrderBook } from "@/components/dashboard/OrderBook";
-import { SupplierOnboarding } from "@/components/onboarding/SupplierOnboarding";
 import { BuyerOnboarding } from "@/components/onboarding/BuyerOnboarding";
 import { Cpu, TrendingUp, UserPlus, ShoppingCart, ShoppingBag } from "lucide-react";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("market");
-  const [supplierDialogOpen, setSupplierDialogOpen] = useState(false);
   const [buyerDialogOpen, setBuyerDialogOpen] = useState(false);
 
   return (
@@ -35,20 +35,14 @@ const Dashboard = () => {
               <TrendingUp className="mr-2 h-4 w-4" />
               Market Status: Beta
             </Button>
-            <Dialog open={supplierDialogOpen} onOpenChange={setSupplierDialogOpen}>
-              <DialogTrigger asChild>
-                <Button variant="outline" size="sm">
-                  <UserPlus className="mr-2 h-4 w-4" />
-                  Supplier
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-                <DialogHeader>
-                  <DialogTitle>Supplier Onboarding</DialogTitle>
-                </DialogHeader>
-                <SupplierOnboarding />
-              </DialogContent>
-            </Dialog>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => navigate("/supplier-onboarding")}
+            >
+              <UserPlus className="mr-2 h-4 w-4" />
+              Supplier
+            </Button>
             <Dialog open={buyerDialogOpen} onOpenChange={setBuyerDialogOpen}>
               <DialogTrigger asChild>
                 <Button size="sm">
