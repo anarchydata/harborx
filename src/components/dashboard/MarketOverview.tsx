@@ -186,7 +186,7 @@ export const MarketOverview = () => {
               <p className="text-xs font-medium text-success mb-3">
                 {stat.change} from last period
               </p>
-              <ResponsiveContainer width="100%" height={40}>
+              <ResponsiveContainer width="100%" height={180}>
                 <AreaChart data={stat.data}>
                   <defs>
                     <linearGradient id={`gradient-${stat.title}`} x1="0" y1="0" x2="0" y2="1">
