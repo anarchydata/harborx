@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { MarketOverview } from "@/components/dashboard/MarketOverview";
 import { OrderBook } from "@/components/dashboard/OrderBook";
 import { SupplierOnboarding } from "@/components/onboarding/SupplierOnboarding";
 import { BuyerOnboarding } from "@/components/onboarding/BuyerOnboarding";
-import { Cpu, TrendingUp } from "lucide-react";
+import { Cpu, TrendingUp, UserPlus, ShoppingCart } from "lucide-react";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("market");
+  const [supplierDialogOpen, setSupplierDialogOpen] = useState(false);
+  const [buyerDialogOpen, setBuyerDialogOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background">
@@ -20,7 +23,7 @@ const Dashboard = () => {
             </div>
             <div>
               <h1 className="text-xl font-bold text-foreground">GPU Trade Desk</h1>
-              <p className="text-xs text-muted-foreground">Commodity Trading Platform</p>
+              <p className="text-xs text-muted-foreground">Class B Compute Trading</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -28,17 +31,43 @@ const Dashboard = () => {
               <TrendingUp className="mr-2 h-4 w-4" />
               Market Status: Live
             </Button>
+            <Dialog open={supplierDialogOpen} onOpenChange={setSupplierDialogOpen}>
+              <DialogTrigger asChild>
+                <Button variant="outline" size="sm">
+                  <UserPlus className="mr-2 h-4 w-4" />
+                  Supplier
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle>Supplier Onboarding</DialogTitle>
+                </DialogHeader>
+                <SupplierOnboarding />
+              </DialogContent>
+            </Dialog>
+            <Dialog open={buyerDialogOpen} onOpenChange={setBuyerDialogOpen}>
+              <DialogTrigger asChild>
+                <Button size="sm">
+                  <ShoppingCart className="mr-2 h-4 w-4" />
+                  Buyer
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle>Buyer Onboarding</DialogTitle>
+                </DialogHeader>
+                <BuyerOnboarding />
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </header>
 
       <div className="container mx-auto px-6 py-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full max-w-md grid-cols-4 bg-secondary">
+          <TabsList className="grid w-full max-w-md grid-cols-2 bg-secondary">
             <TabsTrigger value="market">Market</TabsTrigger>
             <TabsTrigger value="orders">Orders</TabsTrigger>
-            <TabsTrigger value="supplier">Supplier</TabsTrigger>
-            <TabsTrigger value="buyer">Buyer</TabsTrigger>
           </TabsList>
 
           <TabsContent value="market" className="space-y-6">
@@ -47,14 +76,6 @@ const Dashboard = () => {
 
           <TabsContent value="orders" className="space-y-6">
             <OrderBook />
-          </TabsContent>
-
-          <TabsContent value="supplier" className="space-y-6">
-            <SupplierOnboarding />
-          </TabsContent>
-
-          <TabsContent value="buyer" className="space-y-6">
-            <BuyerOnboarding />
           </TabsContent>
         </Tabs>
       </div>
