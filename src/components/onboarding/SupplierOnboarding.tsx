@@ -21,7 +21,6 @@ export const SupplierOnboarding = () => {
     contactEmail: "",
     gpuType: "",
     totalHours: "",
-    pricePerHour: "",
     location: "",
     description: "",
   });
@@ -120,21 +119,6 @@ export const SupplierOnboarding = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="pricePerHour">Price per Hour ($)</Label>
-                <Input
-                  id="pricePerHour"
-                  type="number"
-                  step="0.01"
-                  placeholder="2.50"
-                  value={formData.pricePerHour}
-                  onChange={(e) =>
-                    setFormData({ ...formData, pricePerHour: e.target.value })
-                  }
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
                 <Label htmlFor="location">Data Center Location</Label>
                 <Select
                   value={formData.location}
@@ -170,9 +154,6 @@ export const SupplierOnboarding = () => {
             <div className="flex gap-3">
               <Button type="submit" className="bg-primary hover:bg-primary/90">
                 Submit Application
-              </Button>
-              <Button type="button" variant="outline">
-                Save as Draft
               </Button>
             </div>
           </form>
