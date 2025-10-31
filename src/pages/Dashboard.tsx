@@ -7,14 +7,11 @@ import { MarketOverview } from "@/components/dashboard/MarketOverview";
 import { OrderBook } from "@/components/dashboard/OrderBook";
 import { BuyerOnboarding } from "@/components/onboarding/BuyerOnboarding";
 import { Cpu, TrendingUp, UserPlus, ShoppingCart, ShoppingBag } from "lucide-react";
-
 const Dashboard = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("market");
   const [buyerDialogOpen, setBuyerDialogOpen] = useState(false);
-
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -22,8 +19,8 @@ const Dashboard = () => {
               <Cpu className="h-6 w-6 text-primary" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">GPU Trade Desk</h1>
-              <p className="text-xs text-muted-foreground">Class B Compute Trading</p>
+              <h1 className="text-xl font-bold text-foreground">HarborX.ai</h1>
+              <p className="text-xs text-muted-foreground">Anchoring the Global Market for Compute</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -35,11 +32,7 @@ const Dashboard = () => {
               <TrendingUp className="mr-2 h-4 w-4" />
               Market Status: Beta
             </Button>
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={() => navigate("/auth")}
-            >
+            <Button variant="outline" size="sm" onClick={() => navigate("/auth")}>
               <UserPlus className="mr-2 h-4 w-4" />
               Supplier Sign In
             </Button>
@@ -77,8 +70,6 @@ const Dashboard = () => {
           </TabsContent>
         </Tabs>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Dashboard;
