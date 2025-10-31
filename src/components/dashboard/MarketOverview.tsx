@@ -27,8 +27,8 @@ const computeMileData = [
 
 // Mini chart data for stats
 const hoursData = [
-  { value: 11200 }, { value: 11800 }, { value: 12100 }, { value: 11900 }, 
-  { value: 12300 }, { value: 12600 }, { value: 12458 }
+  { value: 8200 }, { value: 11800 }, { value: 9100 }, { value: 14900 }, 
+  { value: 12300 }, { value: 8600 }, { value: 12458 }
 ];
 
 const suppliersData = [
@@ -56,21 +56,24 @@ const stats = [
 ];
 
 const recentActivity = [
-  { type: "BUY", gpu: "NVIDIA A100", hours: 100, computeMiles: 148, time: "2m ago" },
-  { type: "SELL", gpu: "NVIDIA A100", hours: 50, computeMiles: 152, time: "5m ago" },
-  { type: "BUY", gpu: "AMD MI250", hours: 200, computeMiles: 138, time: "8m ago" },
-  { type: "BUY", gpu: "NVIDIA A100", hours: 75, computeMiles: 149, time: "12m ago" },
-  { type: "SELL", gpu: "AMD MI250", hours: 150, computeMiles: 141, time: "15m ago" },
+  { type: "BUY", gpu: "NVIDIA H100", specs: "Hopper, 80GB HBM3, 3.35 TB/s, 512 Tensor Cores FP8", hours: 10, price: 28.70, computeMiles: 148, time: "2m ago" },
+  { type: "SELL", gpu: "NVIDIA H200", specs: "Hopper, 141GB HBM3e, 4.8 TB/s, 528 Tensor Cores FP8", hours: 25, price: 71.75, computeMiles: 152, time: "5m ago" },
+  { type: "BUY", gpu: "AMD MI300X", specs: "CDNA 3, 192GB HBM3, 5.3 TB/s, 304 Compute Units", hours: 15, price: 43.05, computeMiles: 138, time: "8m ago" },
+  { type: "BUY", gpu: "NVIDIA A100", specs: "Ampere, 80GB HBM2e, 2 TB/s, 432 Tensor Cores FP16", hours: 50, price: 143.50, computeMiles: 149, time: "12m ago" },
+  { type: "SELL", gpu: "NVIDIA H100", specs: "Hopper, 80GB HBM3, 3.35 TB/s, 512 Tensor Cores FP8", hours: 100, price: 287.00, computeMiles: 151, time: "15m ago" },
+  { type: "BUY", gpu: "AMD MI300X", specs: "CDNA 3, 192GB HBM3, 5.3 TB/s, 304 Compute Units", hours: 30, price: 86.10, computeMiles: 141, time: "18m ago" },
+  { type: "SELL", gpu: "NVIDIA A100", specs: "Ampere, 80GB HBM2e, 2 TB/s, 432 Tensor Cores FP16", hours: 20, price: 57.40, computeMiles: 146, time: "22m ago" },
+  { type: "BUY", gpu: "NVIDIA H200", specs: "Hopper, 141GB HBM3e, 4.8 TB/s, 528 Tensor Cores FP8", hours: 40, price: 114.80, computeMiles: 153, time: "25m ago" },
 ];
 
 export const MarketOverview = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold text-foreground">Market Overview</h2>
-          <p className="text-sm text-muted-foreground">Class B Compute - Real-time trading data</p>
-        </div>
+      <div>
+        <h2 className="text-2xl font-bold text-foreground">Market Overview</h2>
+        <p className="text-sm text-muted-foreground">Class B Compute - Status: Beta</p>
+      </div>
         <Button size="lg" className="gap-2">
           <ShoppingBag className="h-5 w-5" />
           Buy Now at Spot
@@ -78,7 +81,7 @@ export const MarketOverview = () => {
       </div>
 
       {/* Main Charts */}
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-4">
         <Card className="border-border bg-card">
           <CardHeader>
             <CardTitle className="text-foreground">Spot Price</CardTitle>
@@ -163,7 +166,7 @@ export const MarketOverview = () => {
                   dataKey="performance" 
                   stroke="hsl(var(--success))" 
                   strokeWidth={3}
-                  dot={{ fill: 'hsl(var(--success))', r: 4 }}
+                  dot={false}
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -171,8 +174,6 @@ export const MarketOverview = () => {
         </Card>
       </div>
 
-      {/* Stats with mini charts */}
-      <div className="grid gap-4 md:grid-cols-2">
         {stats.map((stat) => (
           <Card key={stat.title} className="border-border bg-card">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -206,7 +207,6 @@ export const MarketOverview = () => {
             </CardContent>
           </Card>
         ))}
-      </div>
 
       <Card className="border-border bg-card">
         <CardHeader>
@@ -231,14 +231,14 @@ export const MarketOverview = () => {
                   </span>
                   <div>
                     <p className="text-sm font-medium text-foreground">{activity.gpu}</p>
-                    <p className="text-xs text-muted-foreground">{activity.hours} hours</p>
+                    <p className="text-xs text-muted-foreground">{activity.specs}</p>
                   </div>
                 </div>
                 <div className="text-right">
                   <p className="text-sm font-mono font-medium text-foreground">
-                    {activity.computeMiles} CM/H
+                    {activity.hours}h @ ${activity.price.toFixed(2)}
                   </p>
-                  <p className="text-xs text-muted-foreground">{activity.time}</p>
+                  <p className="text-xs text-muted-foreground">{activity.computeMiles} CM/H • {activity.time}</p>
                 </div>
               </div>
             ))}
