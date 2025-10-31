@@ -81,9 +81,13 @@ export const MarketOverview = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-bold text-foreground">Market Overview</h2>
+          <Button size="lg" className="gap-2">
+            <ShoppingBag className="h-5 w-5" />
+            Buy Now at Spot
+          </Button>
           <span className="text-sm font-medium text-muted-foreground">Market Status: Beta</span>
         </div>
+        <h2 className="text-2xl font-bold text-foreground">Market Overview</h2>
       </div>
 
       {/* Main Charts */}
