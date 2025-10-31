@@ -6,12 +6,15 @@ import { MarketOverview } from "@/components/dashboard/MarketOverview";
 import { OrderBook } from "@/components/dashboard/OrderBook";
 import { SupplierOnboarding } from "@/components/onboarding/SupplierOnboarding";
 import { BuyerOnboarding } from "@/components/onboarding/BuyerOnboarding";
-import { Cpu, TrendingUp, UserPlus, ShoppingCart } from "lucide-react";
+import { Cpu, TrendingUp, UserPlus, ShoppingCart, ShoppingBag } from "lucide-react";
+
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("market");
   const [supplierDialogOpen, setSupplierDialogOpen] = useState(false);
   const [buyerDialogOpen, setBuyerDialogOpen] = useState(false);
-  return <div className="min-h-screen bg-background">
+
+  return (
+    <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -19,14 +22,18 @@ const Dashboard = () => {
               <Cpu className="h-6 w-6 text-primary" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">Buy and Sell GPU Hours </h1>
-              <p className="text-xs text-muted-foreground">Buy and Sell GPU hours for AI</p>
+              <h1 className="text-xl font-bold text-foreground">GPU Trade Desk</h1>
+              <p className="text-xs text-muted-foreground">Class B Compute Trading</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <Button size="sm" className="gap-2">
+              <ShoppingBag className="h-4 w-4" />
+              Buy Now at Spot
+            </Button>
             <Button variant="outline" size="sm">
               <TrendingUp className="mr-2 h-4 w-4" />
-              Market Status: Live
+              Market Status: Beta
             </Button>
             <Dialog open={supplierDialogOpen} onOpenChange={setSupplierDialogOpen}>
               <DialogTrigger asChild>
@@ -76,6 +83,8 @@ const Dashboard = () => {
           </TabsContent>
         </Tabs>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default Dashboard;
