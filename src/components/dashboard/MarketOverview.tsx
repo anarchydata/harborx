@@ -80,14 +80,10 @@ export const MarketOverview = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-      <div>
-        <h2 className="text-2xl font-bold text-foreground">Market Overview</h2>
-        <p className="text-sm text-muted-foreground">Class B Compute - Status: Beta</p>
-      </div>
-        <Button size="lg" className="gap-2">
-          <ShoppingBag className="h-5 w-5" />
-          Buy Now at Spot
-        </Button>
+        <div className="flex items-center gap-4">
+          <h2 className="text-2xl font-bold text-foreground">Market Overview</h2>
+          <span className="text-sm font-medium text-muted-foreground">Market Status: Beta</span>
+        </div>
       </div>
 
       {/* Main Charts */}
