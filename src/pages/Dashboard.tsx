@@ -38,10 +38,10 @@ const Dashboard = () => {
             <Button 
               variant="outline" 
               size="sm"
-              onClick={() => navigate("/supplier-onboarding")}
+              onClick={() => navigate("/auth")}
             >
               <UserPlus className="mr-2 h-4 w-4" />
-              Supplier
+              Supplier Sign In
             </Button>
             <Dialog open={buyerDialogOpen} onOpenChange={setBuyerDialogOpen}>
               <DialogTrigger asChild>

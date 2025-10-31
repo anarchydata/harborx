@@ -14,7 +14,163 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      gpu_inventory: {
+        Row: {
+          created_at: string
+          gpu_model: string
+          hours_available: number
+          id: string
+          quantity: number
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          gpu_model: string
+          hours_available?: number
+          id?: string
+          quantity?: number
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          gpu_model?: string
+          hours_available?: number
+          id?: string
+          quantity?: number
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gpu_inventory_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      performance_metrics: {
+        Row: {
+          compute_hours: number
+          gpu_inventory_id: string | null
+          id: string
+          recorded_at: string
+          uptime_percentage: number
+          user_id: string
+        }
+        Insert: {
+          compute_hours?: number
+          gpu_inventory_id?: string | null
+          id?: string
+          recorded_at?: string
+          uptime_percentage?: number
+          user_id: string
+        }
+        Update: {
+          compute_hours?: number
+          gpu_inventory_id?: string | null
+          id?: string
+          recorded_at?: string
+          uptime_percentage?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "performance_metrics_gpu_inventory_id_fkey"
+            columns: ["gpu_inventory_id"]
+            isOneToOne: false
+            referencedRelation: "gpu_inventory"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "performance_metrics_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      supplier_profiles: {
+        Row: {
+          authorized_signatory: string
+          business_address: string
+          company_name: string
+          contact_email: string
+          contact_phone: string
+          created_at: string
+          id: string
+          infrastructure_description: string | null
+          legal_business_name: string
+          signatory_title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          authorized_signatory: string
+          business_address: string
+          company_name: string
+          contact_email: string
+          contact_phone: string
+          created_at?: string
+          id?: string
+          infrastructure_description?: string | null
+          legal_business_name: string
+          signatory_title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          authorized_signatory?: string
+          business_address?: string
+          company_name?: string
+          contact_email?: string
+          contact_phone?: string
+          created_at?: string
+          id?: string
+          infrastructure_description?: string | null
+          legal_business_name?: string
+          signatory_title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "supplier_profiles_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,11 +7,14 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Progress } from "@/components/ui/progress";
+import { supabase } from "@/integrations/supabase/client";
 
 const SupplierOnboardingPage = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [currentStep, setCurrentStep] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [userId, setUserId] = useState<string | null>(null);
   const totalSteps = 4;
 
   const [formData, setFormData] = useState({
@@ -25,6 +28,29 @@ const SupplierOnboardingPage = () => {
     description: "",
   });
 
+  useEffect(() => {
+    // Check if user is authenticated
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) {
+        navigate("/auth");
+      } else {
+        setUserId(session.user.id);
+      }
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      if (!session) {
+        navigate("/auth");
+      } else {
+        setUserId(session.user.id);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [navigate]);
+
   const handleNext = () => {
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
@@ -37,12 +63,47 @@ const SupplierOnboardingPage = () => {
     }
   };
 
-  const handleSubmit = () => {
-    toast({
-      title: "Onboarding Complete",
-      description: "Your supplier profile has been created successfully",
-    });
-    navigate("/supplier");
+  const handleSubmit = async () => {
+    if (!userId) {
+      toast({
+        title: "Error",
+        description: "You must be logged in to complete onboarding",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const { error } = await supabase.from("supplier_profiles").insert({
+        user_id: userId,
+        company_name: formData.companyName,
+        legal_business_name: formData.legalBusinessName,
+        contact_email: formData.contactEmail,
+        contact_phone: formData.contactPhone,
+        business_address: formData.businessAddress,
+        authorized_signatory: formData.authorizedSignatory,
+        signatory_title: formData.signatoryTitle,
+        infrastructure_description: formData.description,
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Onboarding Complete",
+        description: "Your supplier profile has been created successfully",
+      });
+      navigate("/supplier");
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const progressPercentage = (currentStep / totalSteps) * 100;
@@ -176,7 +237,9 @@ const SupplierOnboardingPage = () => {
             {currentStep < totalSteps ? (
               <Button onClick={handleNext}>Next</Button>
             ) : (
-              <Button onClick={handleSubmit}>Complete Onboarding</Button>
+              <Button onClick={handleSubmit} disabled={isLoading}>
+                {isLoading ? "Completing..." : "Complete Onboarding"}
+              </Button>
             )}
           </div>
         </CardContent>
