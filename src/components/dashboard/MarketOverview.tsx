@@ -66,14 +66,14 @@ const stats = [
 ];
 
 const recentActivity = [
-  { type: "BUY", gpu: "NVIDIA H100", specs: "Hopper, 80GB HBM3, 3.35 TB/s, 512 Tensor Cores FP8", hours: 10, price: 28.70, computeMiles: 148, time: "2m ago" },
-  { type: "SELL", gpu: "NVIDIA H200", specs: "Hopper, 141GB HBM3e, 4.8 TB/s, 528 Tensor Cores FP8", hours: 25, price: 71.75, computeMiles: 152, time: "5m ago" },
-  { type: "BUY", gpu: "AMD MI300X", specs: "CDNA 3, 192GB HBM3, 5.3 TB/s, 304 Compute Units", hours: 15, price: 43.05, computeMiles: 138, time: "8m ago" },
-  { type: "BUY", gpu: "NVIDIA A100", specs: "Ampere, 80GB HBM2e, 2 TB/s, 432 Tensor Cores FP16", hours: 50, price: 143.50, computeMiles: 149, time: "12m ago" },
-  { type: "SELL", gpu: "NVIDIA H100", specs: "Hopper, 80GB HBM3, 3.35 TB/s, 512 Tensor Cores FP8", hours: 100, price: 287.00, computeMiles: 151, time: "15m ago" },
-  { type: "BUY", gpu: "AMD MI300X", specs: "CDNA 3, 192GB HBM3, 5.3 TB/s, 304 Compute Units", hours: 30, price: 86.10, computeMiles: 141, time: "18m ago" },
-  { type: "SELL", gpu: "NVIDIA A100", specs: "Ampere, 80GB HBM2e, 2 TB/s, 432 Tensor Cores FP16", hours: 20, price: 57.40, computeMiles: 146, time: "22m ago" },
-  { type: "BUY", gpu: "NVIDIA H200", specs: "Hopper, 141GB HBM3e, 4.8 TB/s, 528 Tensor Cores FP8", hours: 40, price: 114.80, computeMiles: 153, time: "25m ago" },
+  { type: "BUY", gpu: "NVIDIA H100", specs: "Hopper, 80GB HBM3, 3.35 TB/s, 512 Tensor Cores FP8", hours: 10, price: 29.50, computeMiles: 148, time: "2m ago" },
+  { type: "SELL", gpu: "NVIDIA H200", specs: "Hopper, 141GB HBM3e, 4.8 TB/s, 528 Tensor Cores FP8", hours: 25, price: 68.25, computeMiles: 152, time: "5m ago" },
+  { type: "BUY", gpu: "AMD MI300X", specs: "CDNA 3, 192GB HBM3, 5.3 TB/s, 304 Compute Units", hours: 15, price: 41.25, computeMiles: 138, time: "8m ago" },
+  { type: "BUY", gpu: "NVIDIA A100", specs: "Ampere, 80GB HBM2e, 2 TB/s, 432 Tensor Cores FP16", hours: 50, price: 137.50, computeMiles: 149, time: "12m ago" },
+  { type: "SELL", gpu: "NVIDIA H100", specs: "Hopper, 80GB HBM3, 3.35 TB/s, 512 Tensor Cores FP8", hours: 100, price: 295.00, computeMiles: 151, time: "15m ago" },
+  { type: "BUY", gpu: "AMD MI300X", specs: "CDNA 3, 192GB HBM3, 5.3 TB/s, 304 Compute Units", hours: 30, price: 79.50, computeMiles: 141, time: "18m ago" },
+  { type: "SELL", gpu: "NVIDIA A100", specs: "Ampere, 80GB HBM2e, 2 TB/s, 432 Tensor Cores FP16", hours: 20, price: 53.00, computeMiles: 146, time: "22m ago" },
+  { type: "BUY", gpu: "NVIDIA H200", specs: "Hopper, 141GB HBM3e, 4.8 TB/s, 528 Tensor Cores FP8", hours: 40, price: 118.00, computeMiles: 153, time: "25m ago" },
 ];
 
 export const MarketOverview = () => {
