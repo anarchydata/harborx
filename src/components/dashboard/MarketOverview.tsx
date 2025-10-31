@@ -194,15 +194,34 @@ export const MarketOverview = () => {
                 <AreaChart data={stat.data}>
                   <defs>
                     <linearGradient id={`gradient-${stat.title}`} x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.2}/>
+                      <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.3}/>
                       <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0}/>
                     </linearGradient>
                   </defs>
+                  <XAxis 
+                    dataKey="time" 
+                    stroke="hsl(var(--muted-foreground))" 
+                    fontSize={12}
+                    tickLine={false}
+                    hide
+                  />
+                  <YAxis 
+                    stroke="hsl(var(--muted-foreground))" 
+                    fontSize={12}
+                    tickLine={false}
+                  />
+                  <Tooltip 
+                    contentStyle={{ 
+                      backgroundColor: 'hsl(var(--card))', 
+                      border: '1px solid hsl(var(--border))',
+                      borderRadius: '6px'
+                    }}
+                  />
                   <Area 
                     type="monotone" 
                     dataKey="value" 
                     stroke="hsl(var(--primary))" 
-                    strokeWidth={1.5}
+                    strokeWidth={2}
                     fill={`url(#gradient-${stat.title})`}
                   />
                 </AreaChart>
