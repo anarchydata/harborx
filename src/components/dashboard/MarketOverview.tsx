@@ -258,8 +258,11 @@ export const MarketOverview = () => {
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-mono font-medium text-foreground">
-                    {activity.hours}h @ ${activity.price.toFixed(2)}
+                  <p className="text-lg font-mono font-bold text-foreground">
+                    ${(activity.price / activity.hours).toFixed(2)}/hr
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    {activity.hours}h @${activity.price.toFixed(2)}
                   </p>
                   <p className="text-xs text-muted-foreground">{activity.computeMiles} CM/H • {activity.time}</p>
                 </div>
