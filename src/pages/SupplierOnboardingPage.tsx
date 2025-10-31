@@ -17,14 +17,11 @@ const SupplierOnboardingPage = () => {
   const [formData, setFormData] = useState({
     companyName: "",
     legalBusinessName: "",
-    businessRegistrationNumber: "",
-    taxId: "",
     contactEmail: "",
     contactPhone: "",
     businessAddress: "",
     authorizedSignatory: "",
     signatoryTitle: "",
-    location: "",
     description: "",
   });
 
@@ -81,24 +78,6 @@ const SupplierOnboardingPage = () => {
                     value={formData.legalBusinessName}
                     onChange={(e) => setFormData({ ...formData, legalBusinessName: e.target.value })}
                     placeholder="Enter legal business name"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="businessRegistrationNumber">Business Registration Number *</Label>
-                  <Input
-                    id="businessRegistrationNumber"
-                    value={formData.businessRegistrationNumber}
-                    onChange={(e) => setFormData({ ...formData, businessRegistrationNumber: e.target.value })}
-                    placeholder="Enter registration number"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="taxId">Tax ID / EIN *</Label>
-                  <Input
-                    id="taxId"
-                    value={formData.taxId}
-                    onChange={(e) => setFormData({ ...formData, taxId: e.target.value })}
-                    placeholder="Enter tax ID"
                   />
                 </div>
               </div>
@@ -172,15 +151,6 @@ const SupplierOnboardingPage = () => {
             <div className="space-y-4">
               <h3 className="text-lg font-semibold">Data Center Information</h3>
               <div className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="location">Primary Location *</Label>
-                  <Input
-                    id="location"
-                    value={formData.location}
-                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                    placeholder="US West"
-                  />
-                </div>
                 <div className="space-y-2">
                   <Label htmlFor="description">Infrastructure Description</Label>
                   <Textarea
