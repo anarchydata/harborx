@@ -6,7 +6,7 @@ import { MarketOverview } from "@/components/dashboard/MarketOverview";
 import { OrderBook } from "@/components/dashboard/OrderBook";
 import { SupplierOnboarding } from "@/components/onboarding/SupplierOnboarding";
 import { BuyerOnboarding } from "@/components/onboarding/BuyerOnboarding";
-import { Cpu, TrendingUp, UserPlus, ShoppingCart } from "lucide-react";
+import { Cpu, TrendingUp, UserPlus, ShoppingCart, ShoppingBag } from "lucide-react";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("market");
@@ -27,9 +27,13 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <Button size="sm" className="gap-2">
+              <ShoppingBag className="h-4 w-4" />
+              Buy Now at Spot
+            </Button>
             <Button variant="outline" size="sm">
               <TrendingUp className="mr-2 h-4 w-4" />
-              Market Status: Live
+              Market Status: Beta
             </Button>
             <Dialog open={supplierDialogOpen} onOpenChange={setSupplierDialogOpen}>
               <DialogTrigger asChild>
