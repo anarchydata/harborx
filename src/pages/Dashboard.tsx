@@ -12,28 +12,27 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("market");
   const [buyerDialogOpen, setBuyerDialogOpen] = useState(false);
   return <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-card px-4 py-4 md:px-6">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2 md:gap-3">
-            <div className="flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-lg bg-primary/10">
-              <Anchor className="h-5 w-5 md:h-6 md:w-6 text-primary" />
+      <header className="border-b border-border bg-card px-6 py-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+              <Anchor className="h-6 w-6 text-primary" />
             </div>
             <div>
-              <h1 className="text-base md:text-xl font-bold text-foreground">HarborX.ai</h1>
-              <p className="text-xs text-muted-foreground hidden sm:block">Anchoring the Global Market for Compute</p>
+              <h1 className="text-xl font-bold text-foreground">Harborx.ai</h1>
+              
             </div>
           </div>
-          <div className="flex items-center gap-2 flex-wrap justify-end">
-            <Button size="sm" className="gap-2 hidden sm:flex">
+          <div className="flex items-center gap-2">
+            <Button size="sm" className="gap-2">
               <ShoppingBag className="h-4 w-4" />
-              <span className="hidden md:inline">Buy Now at Spot</span>
+              Buy Now at Spot
             </Button>
-            <div className="flex items-center gap-2 text-sm border border-border rounded-md px-3 py-1.5 bg-secondary/50">
-              <TrendingUp className="h-4 w-4 text-muted-foreground" />
-              <span className="text-foreground hidden sm:inline">Market Status: Beta</span>
-              <span className="text-foreground sm:hidden">Beta</span>
-            </div>
-            <Button variant="outline" size="sm" onClick={() => navigate("/auth")} className="hidden md:flex">
+            <Button variant="outline" size="sm">
+              <TrendingUp className="mr-2 h-4 w-4" />
+              Market Status: Beta
+            </Button>
+            <Button variant="outline" size="sm" onClick={() => navigate("/auth")}>
               <UserPlus className="mr-2 h-4 w-4" />
               Supplier Sign In
             </Button>
@@ -41,7 +40,7 @@ const Dashboard = () => {
               <DialogTrigger asChild>
                 <Button size="sm">
                   <ShoppingCart className="mr-2 h-4 w-4" />
-                  <span className="hidden sm:inline">Buyer</span>
+                  Buyer
                 </Button>
               </DialogTrigger>
               <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
