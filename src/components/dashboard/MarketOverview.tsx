@@ -14,7 +14,7 @@ const spotPriceData = [
   { time: "Now", price: 2.87 },
 ];
 
-// Compute Mile/H performance data (similar to vast.ai DLPerf)
+// Compute Mile/H performance data
 const computeMileData = [
   { time: "00:00", performance: 145 },
   { time: "04:00", performance: 142 },

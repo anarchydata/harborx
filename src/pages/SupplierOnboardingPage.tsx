@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
+import { ArrowLeft } from "lucide-react";
 
 const SupplierOnboardingPage = () => {
   const navigate = useNavigate();
@@ -110,12 +111,25 @@ const SupplierOnboardingPage = () => {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      <div className="absolute top-4 left-4 flex gap-2">
+        <Button variant="ghost" onClick={() => navigate("/")}>
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Back to Dashboard
+        </Button>
+      </div>
       <Card className="w-full max-w-2xl">
         <CardHeader>
-          <CardTitle>Supplier Onboarding</CardTitle>
-          <CardDescription>
-            Step {currentStep} of {totalSteps}
-          </CardDescription>
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle>Supplier Onboarding</CardTitle>
+              <CardDescription>
+                Step {currentStep} of {totalSteps}
+              </CardDescription>
+            </div>
+            <Button variant="outline" onClick={() => navigate("/auth?from=onboarding")}>
+              Already have an account? Login
+            </Button>
+          </div>
           <Progress value={progressPercentage} className="mt-2" />
         </CardHeader>
         <CardContent>
